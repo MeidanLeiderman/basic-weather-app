@@ -1,5 +1,5 @@
 const BASE_API_URL = 'https://www.metaweather.com/api/location';
-const CORS_URL = 'http://ml-cors-anywhere.herokuapp.com';
+const CORS_URL = 'https://ml-cors-anywhere.herokuapp.com';
 
 
 async function fetchWeather(keyword) {
