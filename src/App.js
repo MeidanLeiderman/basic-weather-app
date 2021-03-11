@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
+import weatherService from './services/weatherService'
+import WeatherDisplay from './modules/weather-display/weather'
+import SearchForm from './modules/search-form/form'
 
 function App() {
+
+  const [keyword, setKeyword] = useState('')
+  const [currentWeather, setCurrentWeather] = useState(null)
+  const searchCity = async (keyword) => {
+    const weather = await weatherService.fetchWeather(keyword)
+    console.log(weather)
+    setCurrentWeather(weather)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Basic Weather App</h1>
+      <SearchForm keyword={keyword} onKeywordChange={setKeyword} onHandleSubmit={searchCity}/>
+      
+      {currentWeather && <WeatherDisplay weather={currentWeather}/> }
+      {currentWeather===undefined && <p>Unable to find your request</p>}
     </div>
   );
 }

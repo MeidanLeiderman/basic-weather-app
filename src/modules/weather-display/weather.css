@@ -1,0 +1,12 @@
+.weather-display{
+    display: flex;
+    flex-direction: column;
+}
+
+.location-container{
+    /* display: flex; */
+}
+
+.location{
+    font-size: 1.5rem;
+}
